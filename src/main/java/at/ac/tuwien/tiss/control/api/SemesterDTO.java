@@ -2,10 +2,11 @@ package at.ac.tuwien.tiss.control.api;
 
 import lombok.Data;
 
+import java.util.Comparator;
 import java.util.Date;
 
 @Data
-public class SemesterDTO {
+public class SemesterDTO implements Comparable<SemesterDTO> {
 
     private Date start;
     private Date end;
@@ -23,7 +24,12 @@ public class SemesterDTO {
         }
     }
 
-    enum Season {
+    @Override
+    public int compareTo(SemesterDTO o) {
+        return start.compareTo(o.getStart());
+    }
+
+    public enum Season {
         W,
         S
     }
